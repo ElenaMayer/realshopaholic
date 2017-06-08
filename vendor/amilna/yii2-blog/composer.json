@@ -1,0 +1,43 @@
+{
+    "name": "amilna/yii2-blog",
+    "description": "Blogging module support for Yii2",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","blog"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Satrio Arditama",
+            "email": "iyo@amilna.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "yiisoft/yii2": "*",
+	"kartik-v/yii2-mpdf": "*",
+	"kartik-v/yii2-widgets": "*",
+	"kartik-v/yii2-date-range": "*",
+	"kartik-v/yii2-grid": "*",
+	"vova07/yii2-imperavi-widget": "dev-master",
+	"himiklab/yii2-colorbox-widget" : "*",
+	"iutbay/yii2-fontawesome": "*",
+	"iutbay/yii2-kcfinder" : "dev-master",
+	"amilna/yii2-yap": "dev-master",
+	"kop/yii2-scroll-pager": "dev-master"
+    },
+    "repositories":[		
+		{
+			"type": "vcs",
+			"url": "https://github.com/aaiyo/yii2-kcfinder"
+		},
+		{
+			"type": "vcs",
+			"url": "https://github.com/aaiyo/yii2-imperavi-widget"
+		}
+    ],	    
+    "autoload": {
+        "psr-4": {
+            "amilna\\blog\\": ""
+        }
+    }
+}

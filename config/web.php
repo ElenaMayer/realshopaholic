@@ -45,6 +45,15 @@ $config = [
             ],
         ],
     ],
+    'modules' => [
+        'gridview' =>  [
+            'class' => 'kartik\grid\Module',
+        ],
+        'blog' => [
+            'class' => 'amilna\blog\Module',
+            'userClass' => 'app\models\User', // example if use another user class
+        ],
+    ],
     'params' => $params,
 ];
 

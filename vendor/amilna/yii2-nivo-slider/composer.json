@@ -1,0 +1,25 @@
+{
+    "name": "amilna/yii2-nivo-slider",
+    "description": "Nivo slider widget for Yii2",
+    "keywords": ["yii2", "nivo", "widget", "banner"],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "support": {
+        "source": "https://github.com/amilna/yii2-nivo-slider",
+        "issues": "https://github.com/amilna/yii2-nivo-slider/issues"
+    },
+    "authors": [
+        {
+            "name": "Amilna",
+            "homepage": "https://github.com/amilna/"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"       
+    },
+    "autoload": {
+        "psr-4": {
+            "amilna\\nivoslider\\": ""
+        }
+    }
+}
