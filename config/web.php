@@ -14,10 +14,10 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
-        ],
+//        'user' => [
+//            'identityClass' => 'app\models\User',
+//            'enableAutoLogin' => true,
+//        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -51,7 +51,10 @@ $config = [
         ],
         'blog' => [
             'class' => 'amilna\blog\Module',
-            'userClass' => 'app\models\User', // example if use another user class
+            'userClass' => 'dektrium\user\Module',
+        ],
+        'user' => [
+            'class' => 'dektrium\user\Module',
         ],
     ],
     'params' => $params,

@@ -19,11 +19,13 @@ class ComposerStaticInit1a6199fb9059a80aebe8436631ef901f
         array (
             'yii\\swiftmailer\\' => 16,
             'yii\\jui\\' => 8,
+            'yii\\httpclient\\' => 15,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
             'yii\\composer\\' => 13,
             'yii\\bootstrap\\' => 14,
+            'yii\\authclient\\' => 15,
             'yii\\' => 4,
         ),
         'v' => 
@@ -76,6 +78,10 @@ class ComposerStaticInit1a6199fb9059a80aebe8436631ef901f
         'h' => 
         array (
             'himiklab\\colorbox\\' => 18,
+        ),
+        'd' => 
+        array (
+            'dektrium\\user\\' => 14,
         ),
         'c' => 
         array (
@@ -139,6 +145,10 @@ class ComposerStaticInit1a6199fb9059a80aebe8436631ef901f
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-jui',
         ),
+        'yii\\httpclient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-httpclient',
+        ),
         'yii\\gii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-gii',
@@ -158,6 +168,10 @@ class ComposerStaticInit1a6199fb9059a80aebe8436631ef901f
         'yii\\bootstrap\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-bootstrap',
+        ),
+        'yii\\authclient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-authclient',
         ),
         'yii\\' => 
         array (
@@ -296,6 +310,10 @@ class ComposerStaticInit1a6199fb9059a80aebe8436631ef901f
         'himiklab\\colorbox\\' => 
         array (
             0 => __DIR__ . '/..' . '/himiklab/yii2-colorbox-widget',
+        ),
+        'dektrium\\user\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dektrium/yii2-user',
         ),
         'cebe\\markdown\\' => 
         array (
