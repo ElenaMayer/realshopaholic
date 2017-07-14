@@ -15,12 +15,25 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
+    public $jsOptions = array(
+        'position' => \yii\web\View::POS_HEAD
+    );
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'css/site.css?3',
+        'css/font-awesome.min.css',
+        'css/bootstrap.min.css',
+        'css/magnific-popup.css',
+        'css/style.css?8',
+        'css/responsive.css',
     ];
     public $js = [
+        'js/jquery.min.js',
+        'js/bootstrap.min.js',
+        'js/jquery.magnific-popup.min.js',
+        'js/jquery.scrollUp.min.js',
+        'js/main.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

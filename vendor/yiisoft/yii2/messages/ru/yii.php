@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Powered by {yii}' => 'Работает на {yii}',
+    'Powered by {yii}' => 'Copyright by {yii}',
     'Unknown alias: -{name}' => 'Неизвестный псевдоним: -{name}',
     'Yii Framework' => 'Yii Framework',
     '(not set)' => '(не задано)',

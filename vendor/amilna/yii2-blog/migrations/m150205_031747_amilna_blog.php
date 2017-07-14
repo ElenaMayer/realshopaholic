@@ -22,7 +22,7 @@ class m150205_031747_amilna_blog extends Migration
 		$this->createTable($this->db->tablePrefix.'blog_post', [
             'id' => 'pk',
             'title' => Schema::TYPE_STRING . '(65) NOT NULL',
-            'description' => Schema::TYPE_STRING . '(155) NOT NULL',
+            'description' => Schema::TYPE_STRING . '(255) NOT NULL',
             'content' => Schema::TYPE_TEXT . ' NOT NULL',
             'tags' => Schema::TYPE_STRING . '',
             'image' => Schema::TYPE_TEXT . '',

@@ -6,6 +6,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -42,6 +43,10 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'post/<id:\d+>' => 'site/post/',
+                'category/<id:\d+>' => 'site/category/',
+                'tag/<tag:\w+>' => 'site/tag/',
+                'ajax/<action:\w+>' => 'site/<action>',
             ],
         ],
 
@@ -82,7 +87,7 @@ $config = [
         ],
         'blog' => [
             'class' => 'amilna\blog\Module',
-            'userClass' => 'dektrium\user\Module',
+            'userClass' => 'dektrium\user\models\User',
         ],
         'user' => [
             'class' => 'dektrium\user\Module',

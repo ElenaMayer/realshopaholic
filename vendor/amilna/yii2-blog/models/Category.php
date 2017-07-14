@@ -46,7 +46,7 @@ class Category extends \yii\db\ActiveRecord
             [['title'], 'string', 'max' => 65],
             [['image'], 'string', 'max' => 255],
             [['title'], 'unique'],
-            ['title', 'match', 'pattern' => '/^[a-zA-Z0-9 \-\(\)]+$/', 'message' => 'Title can only contain alphanumeric characters, spaces and dashes.'],
+//            ['title', 'match', 'pattern' => '/^[a-zA-Z0-9 \-\(\)]+$/', 'message' => 'Title can only contain alphanumeric characters, spaces and dashes.'],
         ];
     }
 

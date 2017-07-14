@@ -27,3 +27,6 @@ phpunit.phar
 
 tests/_output/*
 tests/_support/_generated
+
+# rbac files
+rbac

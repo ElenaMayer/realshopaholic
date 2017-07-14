@@ -75,7 +75,7 @@ foreach ($model->blogCatPos as $c)
 			?>		
 				</div>						
 			</div>
-			<?= $form->field($model, 'description')->textArea(['maxlength' => 155,'placeholder'=>Yii::t('app','This description also used as meta description')]) ?>
+			<?= $form->field($model, 'description')->textArea(['maxlength' => 255,'placeholder'=>Yii::t('app','This description also used as meta description')]) ?>
 
 			<?php 
 			$isettings = [

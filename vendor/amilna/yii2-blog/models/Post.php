@@ -21,6 +21,7 @@ use Yii;
  * @property integer $isdel
  *
  * @property BlogCatPos[] $blogCatPos
+ * @property Comment[] $comments
  * @property User $author
  */
 class Post extends \yii\db\ActiveRecord
@@ -47,8 +48,8 @@ class Post extends \yii\db\ActiveRecord
             [['isfeatured'], 'boolean'],
             [['tags','time'], 'safe'],
             [['title'], 'string', 'max' => 65],
-            [['description'], 'string', 'max' => 155],
-            ['title', 'match', 'pattern' => '/^[a-zA-Z0-9 \-\(\)]+$/', 'message' => 'Title can only contain alphanumeric characters, spaces and dashes.'],
+            [['description'], 'string', 'max' => 255],
+//            ['title', 'match', 'pattern' => '/^[a-zA-Z0-9 \-\(\)]+$/', 'message' => 'Title can only contain alphanumeric characters, spaces and dashes.'],
             //[['tags'], 'string', 'max' => 255]
         ];
     }
@@ -137,7 +138,15 @@ class Post extends \yii\db\ActiveRecord
         $userClass = Yii::$app->getModule('blog')->userClass;        
         return $this->hasOne($userClass::className(), ['id' => 'author_id']);
     }
-    
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComments()
+    {
+        return $this->hasMany(Comment::className(), ['post_id' => 'id']);
+    }
+
     public function getTags()
 	{
 		$models = $this->find()->all();
@@ -174,5 +183,26 @@ class Post extends \yii\db\ActiveRecord
         
         return ($res == null?[]:$res);        
 	}
+
+	public function getTimeString(){
+        $res = date("d ", strtotime($this->time));
+        $month = date("n", strtotime($this->time));
+        switch ($month){
+            case 1: $res.='января';break;
+            case 2: $res.='февраля';break;
+            case 3: $res.='марта';break;
+            case 4: $res.='апреля';break;
+            case 5: $res.='мая';break;
+            case 6: $res.='июня';break;
+            case 7: $res.='июля';break;
+            case 8: $res.='августа';break;
+            case 9: $res.='сентября';break;
+            case 10: $res.='октября';break;
+            case 11: $res.='ноября';break;
+            case 12: $res.='декабря';break;
+        }
+        $res .= date(" Y", strtotime($this->time));
+        return $res;
+    }
 
 }

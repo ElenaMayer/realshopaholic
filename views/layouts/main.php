@@ -6,7 +6,6 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
@@ -16,6 +15,7 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -24,53 +24,119 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/user/security/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/user/security/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?>
 
+<!-- pre-loader -->
+<div id="st-preloader">
+    <div class="st-preloader-circle"></div>
+</div>
+<div class="header-top">
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= $content ?>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="header-top-left social-icons">
+                    <a href="#"><i class="fa fa-vk"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-youtube-play"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="header-top-right fix">
+                    <div class="header-links">
+                        <ul>
+                            <li>
+                                <?php if(Yii::$app->user->isGuest):?>
+                                    <a href="/user/login?returnUrl=<?= $_SERVER['REQUEST_URI'] ?>">Войти</a>
+                                <?php else:?>
+                                    <?php echo (Html::beginForm(['/user/security/logout'], 'post')
+
+                                    . Html::submitButton(
+                                        'Выйти',
+                                        ['class' => 'btn btn-link logout']
+                                    )
+                                    . Html::endForm()); ?>
+                                <?php endif;?>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="top-search">
+                        <a href="#" class="sactive"><i class="fa fa-search"></i></a>
+                    </div>
+                </div>
+
+                <div class="show-search">
+                    <form method="get" id="search-form" action="#">
+                        <input type="text" placeholder="Найти..." name="s" >
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- header -->
+<header class="header">
+    <div class="logo text-center">
+        <h1><a href="/"> <img src="/images/logo.png" alt="Textual"></a></h1>
+        <p>Гид по шопингу - научись покупать онлайн!</p>
+    </div>
+</header>
+<!-- start main menu -->
+<div class="wrap">
+    <nav class="navbar main-menu">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div id="myNavbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="<?php if (strpos(Yii::$app->request->pathInfo, 'category/1')!==false):?>active<?php endif;?>"><a href="/category/1">Пошаговые инструкции</a></li>
+                    <li class="<?php if (strpos(Yii::$app->request->pathInfo, 'category/2')!==false):?>active<?php endif;?>"><a href="/category/2">Обзоры магазинов</a></li>
+                    <li class="<?php if (strpos(Yii::$app->request->pathInfo, 'catalog')!==false):?>active<?php endif;?>"><a href="/catalog">Каталог магазинов</a></li>
+                    <li class="<?php if (strpos(Yii::$app->request->pathInfo, 'category/3')!==false):?>active<?php endif;?>"><a href="/category/3">Обзоры товаров</a></li>
+                    <li class="<?php if (strpos(Yii::$app->request->pathInfo, 'category/4')!==false):?>active<?php endif;?>"><a href="/category/4">Полезное</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="container">
+            <?= $content ?>
+        </div>
     </div>
 </div>
 
+<!-- start footer area -->
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="copyright-area">
+                    <div class="copy-text pull-left">
+                        <p>&copy; <?= date('Y') ?> <?= Yii::powered() ?></p>
+                    </div>
+                    <div class="pull-right social-share footer-social-icon">
+                        <span>Мы в соцсетях: </span>
+                        <ul class="">
+                            <li><a class="s-vk" href=""><i class="fa fa-vk"></i></a></li>
+                            <li><a class="s-instagram" href=""><i class="fa fa-instagram"></i></a></li>
+                            <li><a class="s-facebook" href=""><i class="fa fa-facebook"></i></a></li>
+                            <li><a class="s-youtube" href=""><i class="fa fa-youtube-play"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>
+<!-- end footer area -->
 
 <?php $this->endBody() ?>
 </body>

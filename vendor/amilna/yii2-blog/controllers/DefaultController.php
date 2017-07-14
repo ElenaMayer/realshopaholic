@@ -6,9 +6,28 @@ use Yii;
 use yii\web\Controller;
 use vova07\imperavi\actions\UploadAction;
 use vova07\imperavi\actions\GetAction;
+use yii\filters\AccessControl;
 
 class DefaultController extends Controller
 {
+
+    public $layout = 'blog';
+
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
     public function actionIndex()
     {        
         return $this->render('index');
