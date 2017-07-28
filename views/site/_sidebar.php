@@ -4,7 +4,7 @@
         <aside class="widget about-me-widget"><!-- start single widget -->
 
             <div class="about-me-img">
-                <img src="../images/aboout-me.jpg" alt="" class="img-me">
+                <img src="../images/about-me.png" alt="" class="img-me">
             </div>
             <div class="about-me-content">
                 <h3>Майер Елена <span>О проекте</span></h3>
@@ -20,20 +20,19 @@
             <div class="social-share">
                 <h3 class="widget-title text-uppercase">Мы в соцсетях</h3>
                 <ul class="">
-                    <li><a class="s-vk" href=""><i class="fa fa-vk"></i></a></li>
-                    <li><a class="s-instagram" href=""><i class="fa fa-instagram"></i></a></li>
-                    <li><a class="s-facebook" href=""><i class="fa fa-facebook"></i></a></li>
-                    <li><a class="s-youtube" href=""><i class="fa fa-youtube-play"></i></a></li>
+                    <li><a class="s-vk" href="<?= Yii::$app->params['linkVk'] ?>"><i class="fa fa-vk"></i></a></li>
+                    <li><a class="s-instagram" href="<?= Yii::$app->params['linkIg'] ?>"><i class="fa fa-instagram"></i></a></li>
+                    <li><a class="s-facebook" href="<?= Yii::$app->params['linkFb'] ?>"><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="s-youtube" href="<?= Yii::$app->params['linkYt'] ?>"><i class="fa fa-youtube-play"></i></a></li>
                 </ul>
             </div>
         </aside><!-- end single widget -->
         <aside class="widget news-letter"><!-- start single widget -->
             <h3 class="widget-title text-uppercase">Подписка на обновления</h3>
             <p>Подпишись на обновления и узнай первым о новых статьях, обзорах и инструкциях.</p>
-            <form action="#">
-                <input type="email" placeholder="Ваш e-mail">
-                <input type="submit" value="Подписаться"
-                       class="text-uppercase text-center btn btn-subscribe">
+            <form id="subscribe-form" action="#">
+                <input type="email" id="subscribe-email" placeholder="Ваш e-mail" required>
+                <input type="submit" value="Подписаться" class="text-uppercase text-center btn btn-subscribe">
             </form>
         </aside><!-- end single widget -->
         <aside class="widget p-post-widget">
@@ -74,19 +73,9 @@
                 <?php foreach ($categories as $category):?>
                     <li>
                         <a href="/category/<?= $category->id ?>"><?= $category->description ?></a>
-                        <span class="post-count pull-right"> <?= \amilna\blog\models\BlogCatPos::find()->where(['category_id' => $category->id])->count();?> </span>
+                        <span class="post-count pull-right"> <?= count($category->activePosts);?> </span>
                     </li>
                 <?php endforeach;?>
-            </ul>
-        </aside><!-- end single widget -->
-        <aside class="widget widget-texty"><!-- start single widget -->
-            <h3 class="widget-title text-uppercase">Textual@Instagram</h3>
-            <ul>
-                <li><a href=""><img src="../images/instra-1.jpg" alt="">
-                    </a></li>
-                <li><a href=""><img src="../images/instra-2.jpg" alt=""></a></li>
-                <li><a href=""><img src="../images/instra-3.jpg" alt=""></a></li>
-                <li><a href=""><img src="../images/instra-4.jpg" alt=""></a></li>
             </ul>
         </aside><!-- end single widget -->
         <aside class="widget widget-tag"><!-- start single widget -->

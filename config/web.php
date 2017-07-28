@@ -49,7 +49,9 @@ $config = [
                 'ajax/<action:\w+>' => 'site/<action>',
             ],
         ],
-
+        'authManager' => [
+            'class' => 'yii\rbac\PhpManager',
+        ],
         'authClientCollection' => [
             'class'   => \yii\authclient\Collection::className(),
             'clients' => [

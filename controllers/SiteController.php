@@ -5,12 +5,11 @@ namespace app\controllers;
 use amilna\blog\models\Category;
 use amilna\blog\models\Post;
 use amilna\blog\models\Comment;
+use app\models\Subscription;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
 
 class SiteController extends Controller
 {
@@ -67,7 +66,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $posts = Post::find()->where(['status' => 1])->all();
+        $posts = Post::find()->where(['status' => 1])->orderBy(['time'=>SORT_DESC])->all();
         $categories = Category::find()->all();
         $tags = Post::find()->select(['tags'])->distinct()->all();
         return $this->render('index', [
@@ -85,21 +84,17 @@ class SiteController extends Controller
      */
     public function actionCategory($id)
     {
-        $posts = Post::find()->where(['status' => 1])->all();
+        $posts = Post::find()->where(['status' => 1])->orderBy(['time'=>SORT_DESC])->all();
         $categories = Category::find()->all();
         $tags = Post::find()->select(['tags'])->distinct()->all();
 
         $category = Category::findOne($id);
-        $postByCategory = [];
-        foreach ($category->blogCatPos as $blogCatPos){
-            array_push($postByCategory, $blogCatPos->post);
-        }
         return $this->render('category', [
                 'posts' => $posts,
                 'categories' => $categories,
                 'tags' => $tags,
                 'category' => $category,
-                'postByCategory' => $postByCategory,
+                'postByCategory' => $category->activePosts,
             ]
         );
     }
@@ -111,7 +106,7 @@ class SiteController extends Controller
      */
     public function actionTag($tag)
     {
-        $posts = Post::find()->where(['status' => 1])->all();
+        $posts = Post::find()->where(['status' => 1])->orderBy(['time'=>SORT_DESC])->all();
         $categories = Category::find()->all();
         $tags = Post::find()->select(['tags'])->distinct()->all();
 
@@ -133,7 +128,7 @@ class SiteController extends Controller
      */
     public function actionPost($id)
     {
-        $posts = Post::find()->where(['status' => 1])->all();
+        $posts = Post::find()->where(['status' => 1])->orderBy(['time'=>SORT_DESC])->all();
         $categories = Category::find()->all();
         $tags = Post::find()->select(['tags'])->distinct()->all();
 
@@ -152,6 +147,7 @@ class SiteController extends Controller
         print_r(222);
     }
 
+    //ajax
     public function actionAddcomment()
     {
         $model = new Comment();
@@ -172,20 +168,60 @@ class SiteController extends Controller
                 $model->comment = $post['comment'];
             }
 
+            if (isset($post['parent_id']) && $post['parent_id'] != 0)
+            {
+                $model->parent_id = $post['parent_id'];
+            }
             $transaction = Yii::$app->db->beginTransaction();
             try {
 
                 if ($model->save()) {
                     $post = Post::findOne($post_id);
                     $transaction->commit();
-                    echo $this->render('_comments', [
+                    echo $this->renderAjax('_comments', [
                         'comments' => $post->comments,
+                        'new_comment' => $model
                     ]);
                 } else {
                     $transaction->rollBack();
                 }
             } catch (Exception $e) {
                 $transaction->rollBack();
+            }
+        }
+    }
+
+    //ajax
+    public function actionAddsubscription()
+    {
+        if (Yii::$app->request->post())
+        {
+            $post = Yii::$app->request->post();
+            if (isset($post['email']))
+            {
+                $email = $post['email'];
+                $model = Subscription::findOne(['email'=>$email]);
+                if ($model){
+                    echo "Вы уже подписаны на обновления!";
+                } else {
+                    $model = new Subscription();
+                    $model->time = date("Y-m-d H:i:s");
+                    $model->email = $email;
+                    if(!Yii::$app->user->isGuest)
+                        $model->user_id = Yii::$app->user->id;
+
+                    $transaction = Yii::$app->db->beginTransaction();
+                    try {
+                        if ($model->save()) {
+                            $transaction->commit();
+                            echo "Спасибо! Вы подписаны на обновления!";
+                        } else {
+                            $transaction->rollBack();
+                        }
+                    } catch (Exception $e) {
+                        $transaction->rollBack();
+                    }
+                }
             }
         }
     }

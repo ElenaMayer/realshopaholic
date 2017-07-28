@@ -713,7 +713,6 @@ class PhpManager extends BaseManager
         $this->rules = [];
         $this->assignments = [];
         $this->items = [];
-
         $items = $this->loadFromFile($this->itemFile);
         $itemsMtime = @filemtime($this->itemFile);
         $assignments = $this->loadFromFile($this->assignmentFile);

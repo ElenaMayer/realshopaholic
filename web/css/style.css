@@ -82,6 +82,10 @@ h6 {
     float: left;
 }
 
+.transition {
+    transition: 3s;
+}
+
 /*----------------------------------------
     Preloader
 ------------------------------------------*/
@@ -137,11 +141,10 @@ h6 {
 header/home
 ------------------------------------------*/
 header.header {
-    background: url(../images/header-bg.jpg) no-repeat scroll 50% 50%;
+    background: url(../images/header-bg.png) no-repeat scroll 50% 50%;
     background-size: cover;
-    position: relative;
     padding: 160px 0 150px;
-    z-index: 1;
+    position: relative;
 }
 
 header.header:after, .single-home-area:after {
@@ -171,7 +174,7 @@ header.header img {
 }
 
 header.header p {
-    color: #e9ffff;
+    color: #f26367;
     font-size: 16px;
 }
 
@@ -242,12 +245,18 @@ header.header p {
 
 .header-top-left.social-icons a:hover i,
 .header-links ul li a:hover,
-.top-search i:hover {
+.top-search i:hover,
+.top-profile i:hover {
     color: #f26367;
 }
 
-.header-links, .top-search {
+.header-links, .top-search,
+.header-links, .top-profile {
     float: right;
+}
+
+.top-profile {
+    border-left: 1px solid #999;
 }
 
 .header-links ul li {
@@ -261,7 +270,8 @@ header.header p {
     font-size: 14px;
 }
 
-.top-search a {
+.top-search a,
+.top-profile a {
     background: none;
     color: #fff;
     border: none;
@@ -887,9 +897,7 @@ main-content gallery
 }
 
 .about-me-img {
-    text-align: right;
-    background: url(../images/me-bg.jpg) no-repeat scroll 50% 50%;
-    background-size: cover;
+    background: url(../images/me-bg.png);
 }
 
 .about-me-img img {
@@ -1490,7 +1498,7 @@ single post
 }
 
 .single-comment {
-    padding-bottom: 25px;
+    margin-bottom: 25px;
 }
 
 .single-comment-reply {
@@ -1518,6 +1526,7 @@ single post
     line-height: 30px;
     text-align: center;
     width: 80px;
+    cursor: pointer;
 }
 
 .single-comment .media-heading .reply-btn:hover {
@@ -1563,6 +1572,10 @@ single post
     margin-bottom: 30px;
 }
 
+.leave-comment .send-btn, .contact-form .send-btn:focus {
+    outline: none;
+}
+
 .leave-comment .send-btn:hover, .contact-form .send-btn:hover {
     background: #ee353a;
 }
@@ -1571,12 +1584,33 @@ single post
     font-size: 13px;
     color: #ee353a;
     font-weight: 500;
-    padding-bottom: 0;
+    padding-bottom: 15px;
 }
 
 .auth-to-leave-comment {
     font-size: 18px;
     font-family: 'Roboto Slab', serif;
+}
+
+.comment-ignoring__popup {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #c4c4c4;
+    padding: 15px;
+    line-height: 20px;
+    right: 65px;
+    margin-top: 13px;
+}
+
+.single-comment .media-body span.comment-ignoring__text {
+    font-size: 13px;
+    padding: 0;
+}
+
+.single-comment a,
+.single-comment a:link,
+.single-comment a:visited {
+    color: #ee353a;
 }
 
 /*----------------------------------------

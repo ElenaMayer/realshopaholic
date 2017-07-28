@@ -21,7 +21,7 @@ class DefaultController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['adminBlog'],
                     ],
                 ],
             ],
@@ -29,7 +29,7 @@ class DefaultController extends Controller
     }
 
     public function actionIndex()
-    {        
+    {
         return $this->render('index');
     }
     

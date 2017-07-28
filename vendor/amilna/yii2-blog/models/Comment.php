@@ -84,7 +84,7 @@ class Comment extends \yii\db\ActiveRecord
      */
     public function getComments()
     {
-        return $this->hasMany(Comment::className(), ['parent_id' => 'id']);
+        return $this->hasMany(Comment::className(), ['parent_id' => 'id'])->orderBy(['time'=>SORT_DESC]);
     }
 
     /**
@@ -112,7 +112,7 @@ class Comment extends \yii\db\ActiveRecord
             case 11: $res.='ноября';break;
             case 12: $res.='декабря';break;
         }
-        $res .= date(" Y h:i", strtotime($this->time));
+        $res .= date(" Y H:i", strtotime($this->time));
         return $res;
     }
 }

@@ -45,7 +45,7 @@ class PostController extends Controller
      * @return mixed
      */
     public function actionIndex($format= false,$arraymap= false,$term = false,$category = false,$time = false)
-    {                
+    {
         $searchModel = new PostSearch();        
         $req = Yii::$app->request->queryParams;
         if ($term) { $req[basename(str_replace("\\","/",get_class($searchModel)))]["term"] = $term;}        

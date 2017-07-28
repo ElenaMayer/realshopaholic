@@ -16,6 +16,7 @@ use Yii;
  * @property integer $isdel
  *
  * @property BlogCatPos[] $blogCatPos
+ * @property Post[] $activePosts
  * @property Category $parent
  * @property Category[] $categories
  */
@@ -107,7 +108,6 @@ class Category extends \yii\db\ActiveRecord
 			return false;	
 		}
 	}    
-    
 
     /**
      * @return \yii\db\ActiveQuery
@@ -115,6 +115,21 @@ class Category extends \yii\db\ActiveRecord
     public function getBlogCatPos()
     {
         return $this->hasMany(BlogCatPos::className(), ['category_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getActivePosts()
+    {
+        $result = [];
+        $blogCatPos = $this->blogCatPos;
+        foreach ($blogCatPos as $b){
+            if($b->post->status) {
+                array_push($result, $b->post);
+            }
+        }
+        return $result;
     }
 
     /**
@@ -136,5 +151,5 @@ class Category extends \yii\db\ActiveRecord
     public function	parents($id = false)
     {
 		return $this->findBySql("SELECT id,title FROM ".$this->tableName().($id?" WHERE id != :id and status=true":" WHERE status=true")." order by title",($id?['id'=>$id]:[]))->all();
-	}	
+	}
 }

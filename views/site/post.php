@@ -40,13 +40,12 @@ $this->title = Yii::$app->params['adminEmail']. ' - '.$post->title;
         <!-- end post -->
         <div id="comment-area" class="comment-area">
             <?php if(!Yii::$app->user->isGuest):?>
-                <div class="leave-comment"><!--leave comment-->
+                <div class="leave-comment" id="<?= $post->id ?>"><!--leave comment-->
                     <h3 class="reply-heading">Оставить комментарий</h3>
                     <form class="form-horizontal contact-form" role="form" method="post" action="#">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <textarea id="comment-field" class="form-control" rows="2" name="message"
-                                          placeholder="Введите текст сообщения"></textarea>
+                                <textarea id="comment-field" class="form-control" rows="2" name="message" placeholder="Введите текст сообщения"></textarea>
                             </div>
                         </div>
                         <button id="send-comment" type="button" class="btn send-btn">Комментировать</button>
@@ -69,25 +68,3 @@ $this->title = Yii::$app->params['adminEmail']. ' - '.$post->title;
         'tags' => $tags,
     ]); ?>
 </div>
-
-<script>
-    $( "body" ).on("click", "#send-comment", function() {
-        if($("#comment-field").val().length > 0) {
-            $(".email-alert").hide();
-            $.ajax({
-                url: '/ajax/addcomment',
-                data: {
-                    post_id: <?= $post->id ?>,
-                    comment: $("#comment-field").val(),
-                },
-                type: "POST",
-                dataType: "html",
-                success: function (data) {
-                    $('#comment-data').html(data);
-                }
-            });
-        } else {
-            $(".email-alert").show();
-        }
-    });
-</script>
