@@ -46,11 +46,18 @@ $config = [
                 'post/<id:\d+>' => 'site/post/',
                 'category/<id:\d+>' => 'site/category/',
                 'tag/<tag:\w+>' => 'site/tag/',
+                'search' => 'site/search/',
                 'ajax/<action:\w+>' => 'site/<action>',
             ],
         ],
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',
+        ],
+        'sphinx' => [
+            'class' => 'yii\sphinx\Connection',
+            'dsn' => 'mysql:host=127.0.0.1;dbname=shops-gid;port=9306',
+            'username' => 'root',
+            'password' => '',
         ],
         'authClientCollection' => [
             'class'   => \yii\authclient\Collection::className(),

@@ -70,7 +70,7 @@ AppAsset::register($this);
                 </div>
 
                 <div class="show-search">
-                    <form method="get" id="search-form" action="#">
+                    <form method="get" id="search-form" action="/search">
                         <input type="text" placeholder="Найти..." name="s" >
                     </form>
                 </div>

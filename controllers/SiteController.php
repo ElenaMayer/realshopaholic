@@ -10,6 +10,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
+use yii\sphinx\Query;
 
 class SiteController extends Controller
 {
@@ -224,5 +225,60 @@ class SiteController extends Controller
                 }
             }
         }
+    }
+
+    public function actionSearch(){
+
+        $q = Yii::$app->sphinx->escapeMatchValue($_GET['s']);
+        $sql = "SELECT id, image, time_ts, SNIPPET(title, :q) as _title, SNIPPET(description, :q) AS _description, SNIPPET(content, :q) AS _content FROM shopsgidindex WHERE MATCH(:q)";
+        $rows = Yii::$app->sphinx->createCommand($sql)
+            ->bindValue('q', $q)
+            ->queryAll();
+
+        $snippets = [];
+        foreach ($rows as $row) {
+            $snippets[$row['id']] = ['title' => $row['_title'], 'description' => $row['_description'], 'content' => $row['_content'], 'time' => $row['time_ts'], 'image' => $row['image']];
+        }
+
+//        print_r($snippets);die();
+
+//        $query = new Query();
+//        $rows = $query->from('shopsgidindex')
+//            ->match($_GET['s'])
+//            ->all();
+//        print_r($rows);die();
+
+        $posts = Post::find()->where(['status' => 1])->orderBy(['time'=>SORT_DESC])->all();
+        $categories = Category::find()->all();
+        $tags = Post::find()->select(['tags'])->distinct()->all();
+
+        return $this->render('search', [
+                'posts' => $posts,
+                'categories' => $categories,
+                'tags' => $tags,
+                'snippets' => $snippets,
+            ]
+        );
+    }
+
+    public static function getTimeString($time){
+        $res = date("d ", $time);
+        $month = date("n", $time);
+        switch ($month){
+            case 1: $res.='января';break;
+            case 2: $res.='февраля';break;
+            case 3: $res.='марта';break;
+            case 4: $res.='апреля';break;
+            case 5: $res.='мая';break;
+            case 6: $res.='июня';break;
+            case 7: $res.='июля';break;
+            case 8: $res.='августа';break;
+            case 9: $res.='сентября';break;
+            case 10: $res.='октября';break;
+            case 11: $res.='ноября';break;
+            case 12: $res.='декабря';break;
+        }
+        $res .= date(" Y", $time);
+        return $res;
     }
 }

@@ -621,6 +621,9 @@ span.archive-name {
     -webkit-transition: all 2s ease;
     transition: all 2s ease;
 }
+.post.list-post .post-thumb > a > img {
+    width: 350px;
+}
 
 .post-thumb:hover > a > img {
     -webkit-transform: scale(1.2);
