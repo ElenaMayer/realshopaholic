@@ -8,4 +8,5 @@ return [
     'linkIg' => 'https://www.instagram.com/realshopaholic.ru/',
     'linkFb' => '',
     'linkYt' => '',
+    'groupIdVk' => '150423917',
 ];

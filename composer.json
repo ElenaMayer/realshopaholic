@@ -19,7 +19,8 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "amilna/yii2-blog": "dev-master",
-        "dektrium/yii2-user": "^0.9.12"
+        "dektrium/yii2-user": "^0.9.12",
+        "yiisoft/yii2-sphinx": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

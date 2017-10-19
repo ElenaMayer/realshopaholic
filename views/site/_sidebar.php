@@ -49,6 +49,14 @@
                 </div>
             <?php endforeach;?>
         </aside>
+        <aside class="widget widget_vk">
+            <script type="text/javascript" src="//vk.com/js/api/openapi.js?150"></script>
+            <!-- VK Widget -->
+            <div id="vk_groups"></div>
+            <script type="text/javascript">
+                VK.Widgets.Group("vk_groups", {mode: 3, width: "auto", no_cover: 1}, 150423917);
+            </script>
+        </aside>
         <aside class="widget"><!-- start single widget -->
             <h3 class="widget-title text-uppercase">Популярные посты</h3>
             <?php foreach ($posts as $post):?>

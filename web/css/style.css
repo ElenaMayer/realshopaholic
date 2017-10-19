@@ -1073,6 +1073,10 @@ main-content gallery
     background: #ee353a;
 }
 
+.widget_vk {
+    padding: 0;
+}
+
 .thumb-latest-posts:last-of-type {
     margin-bottom: 0;
 }
