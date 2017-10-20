@@ -84,7 +84,7 @@ $( "body" ).on("click", "#send-comment", function() {
         $.ajax({
             url: '/ajax/addcomment',
             data: {
-                post_id: e.attr("id"),
+                post_id: $('.main-comment').attr("id"),
                 comment: comment,
                 parent_id: parent_id,
             },

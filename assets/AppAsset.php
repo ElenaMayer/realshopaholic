@@ -15,9 +15,9 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-//    public $jsOptions = array(
-//        'position' => \yii\web\View::POS_HEAD
-//    );
+    public $jsOptions = array(
+        'position' => \yii\web\View::POS_BEGIN
+    );
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
@@ -33,7 +33,7 @@ class AppAsset extends AssetBundle
         'js/bootstrap.min.js',
         'js/jquery.magnific-popup.min.js',
         'js/jquery.scrollUp.min.js',
-        'js/main.js?1',
+        'js/main.js?2',
         'js/jquery.animate-colors.min.js'
     ];
     public $depends = [

@@ -40,7 +40,7 @@ $this->title = Yii::$app->params['adminEmail']. ' - '.$post->title;
         <!-- end post -->
         <div id="comment-area" class="comment-area">
             <?php if(!Yii::$app->user->isGuest):?>
-                <div class="leave-comment" id="<?= $post->id ?>"><!--leave comment-->
+                <div class="leave-comment main-comment" id="<?= $post->id ?>"><!--leave comment-->
                     <h3 class="reply-heading">Оставить комментарий</h3>
                     <form class="form-horizontal contact-form" role="form" method="post" action="#">
                         <div class="form-group">
