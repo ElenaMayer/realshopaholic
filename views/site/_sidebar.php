@@ -7,7 +7,7 @@
                 <img src="../images/about-me.png" alt="" class="img-me">
             </div>
             <div class="about-me-content">
-                <h3>Майер Елена <span>О проекте</span></h3>
+                <h3>Елена Май <span>О проекте</span></h3>
 
                 <p>В ритме современной жизни хочется найти время на все множество занятий и при этом может
                     не остаться время и желания на поход в магазины. Чтобы сэкономить время и усилия сейчас существует
@@ -54,7 +54,7 @@
             <!-- VK Widget -->
             <div id="vk_groups"></div>
             <script type="text/javascript">
-                VK.Widgets.Group("vk_groups", {mode: 3, width: "auto", no_cover: 1}, 150423917);
+                VK.Widgets.Group("vk_groups", {mode: 3, width: "auto", no_cover: 1}, <?= Yii::$app->params['groupIdVk']?>);
             </script>
         </aside>
         <aside class="widget"><!-- start single widget -->

@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = Yii::$app->params['adminEmail']. ' - '.$post->title;
+$this->title = Yii::$app->params['title']. ' - '.$post->title;
 ?>
 <div class="row">
     <div class="col-md-8">
@@ -20,7 +20,9 @@ $this->title = Yii::$app->params['adminEmail']. ' - '.$post->title;
                     <?= $post->content ?>
                 </div>
                 <div class="post-tag">
-                    <a href="/tag/<?= $post->tags ?>"><?= $post->tags ?></a>
+                    <?php foreach (explode(",",$post->tags) as $tag):?>
+                        <a href="/tag/<?= $tag ?>"><?= $tag ?></a>
+                    <?php endforeach;?>
                 </div>
                 <div class="single-post-meta">
                     <ul class="meta-profile pull-left">

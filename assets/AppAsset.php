@@ -25,7 +25,7 @@ class AppAsset extends AssetBundle
         'css/font-awesome.min.css',
         'css/bootstrap.min.css',
         'css/magnific-popup.css',
-        'css/style.css?17',
+        'css/style.css?19',
         'css/responsive.css',
     ];
     public $js = [
@@ -33,7 +33,7 @@ class AppAsset extends AssetBundle
         'js/bootstrap.min.js',
         'js/jquery.magnific-popup.min.js',
         'js/jquery.scrollUp.min.js',
-        'js/main.js?2',
+        'js/main.js?22',
         'js/jquery.animate-colors.min.js'
     ];
     public $depends = [
