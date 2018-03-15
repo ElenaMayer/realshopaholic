@@ -145,7 +145,7 @@ class SiteController extends Controller
 
     public function actionCatalog()
     {
-        print_r(222);
+        //print_r(222);
     }
 
     //ajax

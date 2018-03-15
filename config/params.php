@@ -9,6 +9,7 @@ return [
     'linkFb' => '',
     'linkYt' => '',
     'groupIdVk' => '150423917',
-    'developerURL' => 'https://realshopaholic.ru',
-    'developerName' => 'Mayer Elena'
+    'domain' => 'https://realshopaholic.ru',
+    'developer' => 'Elena Mayer',
+    'developerSite' => 'http://e-mayer.ru',
 ];
